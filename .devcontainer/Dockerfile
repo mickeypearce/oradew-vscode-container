@@ -100,6 +100,9 @@ RUN yum install http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-
 RUN yum install -y oracle-nodejs-release-el7 oracle-release-el7 && \
     yum install nodejs -y
 
+# installs utils
+RUN yum install iputils -y
+
 # Uncomment if the tools package is added
 # ENV PATH=$PATH:/usr/lib/oracle/${release}.${update}/client64/bin
 

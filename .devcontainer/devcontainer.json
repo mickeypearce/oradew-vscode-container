@@ -1,14 +1,17 @@
 {
-    "name": "Oradew",
-    "dockerFile": "Dockerfile",
-    "extensions": [
-        "mp.oradew-vscode",
-        "eamodio.gitlens"
-    ],
-    // Mounting local configuration files directory (tnsnames.ora, ...) into container target
-    // "mounts": ["source=C:/oracle/x86/product/11.2.0/client_1/network/admin,target=/usr/lib/oracle/19.5/client64/lib/network/admin,type=bind,consistency=cached"]
-    // Mount using ORACLE_HOME local variable    
-    "mounts": [
-        "source=${localEnv:ORACLE_HOME}/network/admin,target=/usr/lib/oracle/19.3/client64/lib/network/admin,type=bind,consistency=cached"
-    ]
+  "name": "Oradew",
+  "dockerFile": "Dockerfile",
+  "extensions": ["mp.oradew-vscode", "eamodio.gitlens"],
+  // Mounting local configuration files directory (tnsnames.ora, ...) into container target
+  // "mounts": ["source=C:/oracle/x86/product/11.2.0/client_1/network/admin,target=/usr/lib/oracle/19.5/client64/lib/network/admin,type=bind,consistency=cached"]
+  // Mount using ORACLE_HOME local variable
+  "mounts": [
+    "source=${localEnv:ORACLE_HOME}/network/admin,target=/usr/lib/oracle/19.3/client64/lib/network/admin,type=bind,consistency=cached"
+  ],
+  "settings": {
+    "oradew.cliExecutable": "sqlplus",
+    "files.associations": {
+      "*.sql": "plsql"
+    }
+  }
 }
