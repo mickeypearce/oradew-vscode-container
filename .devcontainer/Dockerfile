@@ -6,9 +6,9 @@
 
 # Added Git and Nodejs
 
-# docker build --pull -t oracle/instantclient:19 .\.devcontainer\
-# docker run -ti --rm oracle/instantclient:19 sqlplus user/pass@name/host
-# docker run --user root -ti --rm oracle/instantclient:19 sqlplus user/pass@name/host
+# docker build -t oradew:19 .\.devcontainer\
+# docker run -it --rm oradew:19 sqlplus user/pass@name/host
+# docker run --user root -it --rm oradew:19 sqlplus user/pass@name/host
 
 
 ####################################################################################
@@ -77,33 +77,31 @@
 #   oracle-instantclientXX.Y-odbc       : ODBC Package - Additional libraries for enabling ODBC applications
 #
 
-FROM oraclelinux:7-slim
+FROM oraclelinux:7.7
 
 ARG release=19
 ARG update=3
 
 # install oracle client
 RUN yum -y install oracle-release-el7 && yum-config-manager --enable ol7_oracle_instantclient && \
-    yum -y install oracle-instantclient${release}.${update}-basic oracle-instantclient${release}.${update}-devel oracle-instantclient${release}.${update}-sqlplus && \
-    rm -rf /var/cache/yum
+    yum -y install oracle-instantclient${release}.${update}-basic oracle-instantclient${release}.${update}-devel oracle-instantclient${release}.${update}-sqlplus    
 
 # install git 2.22.0
-RUN yum install http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm -y && \
-    yum install git -y
-
+RUN yum -y install http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm && \
+    yum -y install git
 
 # install Nodejs v13.x
 # RUN yum install -y gcc-c++ make && \
 #     curl -sL https://rpm.nodesource.com/setup_13.x | bash - && \
 #     yum install -y nodejs
 # installs Nodejs v10.17.0
-RUN yum install -y oracle-nodejs-release-el7 oracle-release-el7 && \
-    yum install nodejs -y
-
-# installs utils
-RUN yum install iputils -y
+RUN yum -y install oracle-nodejs-release-el7 oracle-release-el7 && \
+    yum -y install nodejs
 
 # Uncomment if the tools package is added
 # ENV PATH=$PATH:/usr/lib/oracle/${release}.${update}/client64/bin
+
+# RUN yum clean all
+RUN rm -rf /var/cache/yum
 
 CMD ["sqlplus", "-v"]

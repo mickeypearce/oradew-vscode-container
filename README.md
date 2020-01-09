@@ -1,10 +1,10 @@
-# Oradew VS Code Remote Dev Container
+# Oradew VS Code Dev Container
 
 VS Code container definition for Oracle DB development with Oradew.
 
 ## Prerequisites
 
-- VS Code Extension: Remote - Containers: https://code.visualstudio.com/docs/remote/containers#_getting-started
+- VS Code Extension: [Remote - Containers](https://code.visualstudio.com/remote-tutorials/containers/getting-started)
 
 ## Getting started
 
@@ -15,18 +15,19 @@ VS Code container definition for Oracle DB development with Oradew.
 
 ## Contents
 
-Container consists of Oracle Linux image (oraclelinux:7-slim) with preinstalled:
+Container consists of Oracle Linux image (oraclelinux:7.7) with preinstalled:
 
 - oracle-instantclient19.3
 - oracle-instantclient19.3-sqlplus
 - nodejs-v10.17.0
 - git-2.22.0
-- Oradew extension
+- Oradew extension and `oradew` CLI
 - GitLens extension
+- Bookmarks extension
 
 ## Troubleshooting
 
-Container mounts local path "%ORACLE_HOME%/network/admin" to configuration directory inside container (tnsnames.ora, ...). If you don't have ORACLE_HOME defined on your local system, replace "source" with a full path or remove "mounts" altogehter in `devcontainer.json`.
+Container mounts local path "%ORACLE_HOME%/network/admin" to configuration directory inside container (tnsnames.ora, ...). If you don't have ORACLE_HOME defined on your local system, replace "source" with a full path or remove "mounts" altogether in `devcontainer.json`.
 
 ```json
 "mounts": [
