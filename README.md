@@ -27,7 +27,7 @@ Container consists of Oracle Linux image (oraclelinux:7.7) with preinstalled:
 
 ## Troubleshooting
 
-Container mounts local path "%ORACLE_HOME%/network/admin" to configuration directory inside container (tnsnames.ora, ...). If you don't have ORACLE_HOME defined on your local system, replace "source" with a full path or remove "mounts" altogether in `devcontainer.json`.
+Container mounts local path "%ORACLE_HOME%/network/admin" or "%TNS_ADMIN%" to configuration directory inside container (tnsnames.ora, ...). If you don't have ORACLE_HOME or TNS_ADMIN defined on your local system, replace "source" with a full path or remove "mounts" altogether in `devcontainer.json`.
 
 ```json
 "mounts": [

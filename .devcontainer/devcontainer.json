@@ -8,9 +8,9 @@
   ],
   // Mounting local configuration files directory (tnsnames.ora, ...) into container target
   // "mounts": ["source=C:/oracle/x86/product/11.2.0/client_1/network/admin,target=/usr/lib/oracle/19.5/client64/lib/network/admin,type=bind,consistency=cached"]
-  // Mount using ORACLE_HOME local variable
+  // Mount using TNS_ADMIN local variable
   "mounts": [
-    "source=${localEnv:ORACLE_HOME}/network/admin,target=/usr/lib/oracle/19.3/client64/lib/network/admin,type=bind,consistency=cached"
+    "source=${localEnv:TNS_ADMIN},target=/usr/lib/oracle/19.3/client64/lib/network/admin,type=bind,consistency=cached"
   ],
   "settings": {
     "oradew.cliExecutable": "sqlplus",
@@ -18,11 +18,11 @@
       "*.sql": "plsql"
     }
   },
-  "remoteEnv": {    
+  "remoteEnv": {
     // "NLS_LANG": "AMERICAN_AMERICA.AL32UTF8",
     // Set Sqlplus for oradew CLI
     "ORADEW_CLI_EXECUTABLE": "sqlplus"
   },
-  // Install oradew CLI command 
-  "postCreateCommand": "cd /root/.vscode-server/extensions/mp.oradew-vscode-* && npm run install-cli"
+  // Install oradew CLI command; from latest extension directory (version)
+  "postCreateCommand": "cd \"$(ls -td /root/.vscode-server/extensions/mp.oradew-vscode-* | head -n 1)\" && npm run install-cli"
 }
